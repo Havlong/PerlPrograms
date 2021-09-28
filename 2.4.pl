@@ -2,6 +2,8 @@
 use strict;
 use warnings FATAL => 'all';
 
+`chcp 65001`;
+
 my %list = ("entry" => "");
 
 $~ = *CLI_FORMAT;

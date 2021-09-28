@@ -1,36 +1,40 @@
 #! /usr/bin/perl
+use strict;
+use warnings FATAL => 'all';
 
-print "Введите элементы первого множества\n";
-@first = readSet();
-print "Введите элементы второго множества\n";
-@second = readSet();
+`chcp 65001`;
 
 sub readSet() {
-    @list = ();
+    my @list = ();
 
     while (<STDIN>) {
         chomp;
 
         last if ($_ eq "");
 
-        $was = "";
-        foreach $t (@list) {
+        my $was = "";
+        foreach my $t (@list) {
             $was = ($t eq $_);
             last if ($was);
         }
-        
-        unless($was) {
+
+        unless ($was) {
             push(@list, $_);
         }
     }
     return @list;
 }
 
-@unity = @first;
+print "Введите элементы первого множества\n";
+my @first = readSet();
+print "Введите элементы второго множества\n";
+my @second = readSet();
 
-foreach $t (@second) {
-    $was = "";
-    foreach $x (@first) {
+my @unity = @first;
+
+foreach my $t (@second) {
+    my $was = "";
+    foreach my $x (@first) {
         $was = ($x eq $t);
         last if ($was);
     }
@@ -40,11 +44,11 @@ foreach $t (@second) {
     }
 }
 
-@intersection = ();
+my @intersection = ();
 
-foreach $t (@first) {
-    $was = "";
-    foreach $x (@second) {
+foreach my $t (@first) {
+    my $was = "";
+    foreach my $x (@second) {
         $was = ($x eq $t);
         last if ($was);
     }
@@ -54,11 +58,11 @@ foreach $t (@first) {
     }
 }
 
-@substraction = ();
+my @subtraction = ();
 
-foreach $t (@first) {
-    $was = "";
-    foreach $x (@second) {
+foreach my $t (@first) {
+    my $was = "";
+    foreach my $x (@second) {
         $was = ($x eq $t);
         last if ($was);
     }
@@ -68,10 +72,10 @@ foreach $t (@first) {
     }
 }
 
-@xor = ();
-foreach $t (@first) {
-    $was = "";
-    foreach $x (@second) {
+my @xor = ();
+foreach my $t (@first) {
+    my $was = "";
+    foreach my $x (@second) {
         $was = ($x eq $t);
         last if ($was);
     }
@@ -80,9 +84,9 @@ foreach $t (@first) {
         push(@xor, $t);
     }
 }
-foreach $t (@second) {
-    $was = "";
-    foreach $x (@first) {
+foreach my $t (@second) {
+    my $was = "";
+    foreach my $x (@first) {
         $was = ($x eq $t);
         last if ($was);
     }

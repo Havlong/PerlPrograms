@@ -1,19 +1,11 @@
 #! /usr/bin/perl
+use strict;
+use warnings FATAL => 'all';
 
-print "Введите список:\n";
-@list = readList();
-print "Исходный список: @list\n";
-
-for ($i = 0; $i < $#list; $i += 2) {
-    $t = @list[$i];
-    @list[$i] = @list[$i + 1];
-    @list[$i + 1] = $t;
-}
-
-print "Модифицированный список: @list\n";
+`chcp 65001`;
 
 sub readList() {
-    @list = ();
+    my @list = ();
 
     while (<STDIN>) {
         chomp;
@@ -23,3 +15,16 @@ sub readList() {
     }
     return @list;
 }
+
+
+print "Введите список:\n";
+my @list = readList();
+print "Исходный список: @list\n";
+
+for (my $i = 0; $i < $#list; $i += 2) {
+    my $t = $list[$i];
+    $list[$i] = $list[$i + 1];
+    $list[$i + 1] = $t;
+}
+
+print "Модифицированный список: @list\n";

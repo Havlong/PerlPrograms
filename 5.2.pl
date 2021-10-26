@@ -4,6 +4,8 @@ use warnings FATAL => 'all';
 
 `chcp 65001`;
 
+my $solutionFile = "fileTree.out";
+
 sub search {
     my ($dir, $offset) = @_;
 
@@ -31,10 +33,11 @@ sub search {
 }
 
 print("Введите корневной каталог: ");
-my $root = <>;
+my $root = <STDIN>;
 chomp $root;
 $root =~ s/\/\z//;
 
+my $argsAmount = @ARGV;
+open(STDOUT, '>', $solutionFile) if ($argsAmount > 0 && $ARGV[0] eq "file");
 search($root, '') if (-d $root);
-
-
+close STDOUT if ($argsAmount > 0 && $ARGV[0] eq "file");

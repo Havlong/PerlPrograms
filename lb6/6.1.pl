@@ -42,8 +42,11 @@ for (my $i = 0; $i <= $#ARGV; $i += 2) {
     if ($ARGV[$i] eq "-d") {
         $root = $ARGV[$i + 1];
     }
-    elsif ($ARGV[$i] eq "-e") {
+    elsif ($ARGV[$i] eq "-p") {
         $pattern = "$ARGV[$i + 1]";
+    }
+    elsif ($ARGV[$i] eq "-c") {
+        $flag = "$ARGV[$i + 1]";
     }
 }
 

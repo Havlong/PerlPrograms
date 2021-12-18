@@ -10,10 +10,10 @@ my $NAME = "socket";
 
 unlink $NAME;
 
-my $UNIX_server = IO::Socket::UNIX->new
-    (Local     => $NAME,
-        Listen => 15
-    ) or die "Can\'t create socket :$!";
+my $UNIX_server = IO::Socket::UNIX->new(
+    Local  => $NAME,
+    Listen => 15
+) or die "Can\'t create socket :$!";
 
 logmsg "server started on $NAME";
 

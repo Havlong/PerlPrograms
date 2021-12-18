@@ -7,19 +7,16 @@ sub logmsg {
 }
 
 my $server_port = 1027;
-my $my_tcp_server = IO::Socket::INET->new(
+my $my_udp_server = IO::Socket::INET->new(
     LocalPort => $server_port,
-    Type      => SOCK_STREAM,
-    Reuse     => 1,
-    Listen    => 20)
+    Type      => SOCK_DGRAM,
+    Proto     => "udp")
     or die "Can\'t use port:$server_port";
 
 logmsg "server started on $server_port";
 
-while (my $tcp_client = $my_tcp_server->accept()) {
-    my $message = <$tcp_client>;
+while ($my_udp_server->recv(my $message, 20)) {
     print $message;
-    close($tcp_client);
 }
 
-close($my_tcp_server);
+close($my_udp_server);
